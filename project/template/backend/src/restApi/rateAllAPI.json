@@ -1,0 +1,753 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0",
+		"title": "RateAll"
+	},
+	"host": "http://localhost:3000",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "users"
+		},
+		{
+			"name": "сharacteristics"
+		},
+		{
+			"name": "objects"
+		}
+	],
+	"schemes": [
+		"https"
+	],
+	"paths": {
+		"/users": {
+			"get": {
+				"tags": [
+					"users"
+				],
+				"summary": "list of all users",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/UserItem"
+							}
+						}
+					},
+					"400": {
+						"description": "not users"
+					}
+				}
+			}
+		},
+		"/users/profile": {
+			"get": {
+				"tags": [
+					"users"
+				],
+				"summary": "current user profile",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/UserItem"
+						}
+					},
+					"400": {
+						"description": "not this profile"
+					}
+				}
+			}
+		},
+		"/users/login": {
+			"post": {
+				"tags": [
+					"users"
+				],
+				"parameters": [
+					{
+						"name" : "login",
+						"in": "path",
+						"description": "user login",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name" : "password",
+						"in": "path",
+						"description": "user password",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "ok login"
+					},
+					"400": {
+						"description": "can't login"
+					}
+				}
+			}
+		},
+		"/users/register": {
+			"post": {
+				"tags": [
+					"users"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "user",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/UserItem"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "ok register",
+						"schema":{
+							"type": "string"
+						}
+					},
+					"400": {
+						"description": "can't register"
+					}
+				}
+			}
+		},
+		"/users/:id": {
+			"get": {
+				"tags": [
+					"users"
+				],
+				"summary": "return user profile information",
+				"parameters": [
+					{"name" : "UserId",
+					"in": "path",
+					"description": "ID of user to return",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/UserItem"
+						}
+					},
+					"400": {
+						"description": "id not found"
+					},
+					"404": {
+						"description": "user not found"
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"users"
+				],
+				"summary": "update user profile information",
+				"parameters": [
+					{"name" : "UserId",
+						"in": "path",
+						"description": "ID of user to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/UserItem"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					},
+					"400": {
+						"description": "id not found"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"users"
+				],
+				"summary": "delete user",
+				"parameters": [
+					{"name" : "UserId",
+						"in": "path",
+						"description": "ID of user to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "user delete"
+					},
+					"400": {
+						"description": "id not found"
+					},
+					"404": {
+						"description": "user not found"
+					}
+				}
+			}
+		},
+		"/сharacteristics": {
+			"get":{
+				"tags": [
+				"сharacteristics"
+				],
+				"summary": "list of all characteristics",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/CharacteristicItem"
+							}
+						}
+					},
+					"400": {
+						"description": "not users"
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"сharacteristics"
+				],
+				"summary": "create characteristic",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "user",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/CharacteristicItem"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					}
+				}
+			}
+		},
+		"/characteristics/:id": {
+			"get": {
+				"tags": [
+					"сharacteristics"
+				],
+				"summary": "return characteristic information",
+				"parameters": [
+					{
+						"name" : "CharacteristicId",
+						"in": "path",
+						"description": "ID of characteristic to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/CharacteristicItem"
+						}
+					},
+					"400": {
+						"description": "id not found"
+					},
+					"404": {
+						"description": "characteristic not found"
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"сharacteristics"
+				],
+				"summary": "update characteristic information",
+				"parameters": [
+					{"name" : "CharacteristicId",
+						"in": "path",
+						"description": "ID of characteristic to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/CharacteristicItem"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					},
+					"400": {
+						"description": "id not found"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"сharacteristics"
+				],
+				"summary": "delete characteristic information",
+				"parameters": [
+					{
+						"name" : "CharacteristicId",
+						"in": "path",
+						"description": "ID of characteristic to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					},
+					"400": {
+						"description": "id not found"
+					},
+					"404": {
+						"description": "characteristic not found"
+					}
+				}
+			}
+		},
+		"/objects": {
+			"get": {
+				"tags": [
+					"objects"
+				],
+				"summary": "return all available for voting objects",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/ObjectItem"
+							}
+						}
+					},
+					"400": {
+						"description": "objects not found"
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"objects"
+				],
+				"summary": "create object",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "user",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/ObjectItem"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/objects/:id": {
+			"get": {
+				"tags": [
+					"objects"
+				],
+				"summary": "return object information",
+				"parameters": [
+					{
+						"name" : "ObjectId",
+						"in": "path",
+						"description": "ID of object to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					},
+					"400": {
+						"description": "id not found"
+					},
+					"404": {
+						"description": "object not found"
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"objects"
+				],
+				"summary": "update object information",
+				"parameters": [{
+					"name" : "ObjectId",
+					"in": "path",
+					"description": "ID of object to return",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+				}],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					},
+					"400": {
+						"description": "id not found"
+					},
+					"404": {
+						"description": "object not found"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"objects"
+				],
+				"summary": "delete object information",
+				"parameters": [{
+					"name" : "ObjectId",
+					"in": "path",
+					"description": "ID of object to return",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+				}],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					},
+					"400": {
+						"description": "id not found"
+					},
+					"404": {
+						"description": "object not found"
+					}
+				}
+			}
+		},
+		"/objects/{object_id}/сharacteristics": {
+			"get": {
+				"tags": [
+					"objects"
+				],
+				"summary": "list of available object characteristics",
+				"parameters": [
+					{
+						"name" : "ObjectId",
+						"in": "path",
+						"description": "ID of object to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/CharacteristicItem"
+						}
+					},
+					"400": {
+						"description": "id not found"
+					},
+					"404": {
+						"description": "object not found"
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"objects"
+				],
+				"summary": "create object characteristics",
+				"parameters": [
+					{
+						"name" : "ObjectId",
+						"in": "path",
+						"description": "ID of object to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/CharacteristicItem"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/objects/{object_id}/сharacteristics/{сharacteristic_id}": {
+			"get": {
+				"tags": [
+					"objects"
+				],
+				"summary": "list of all available object ratings",
+				"parameters": [
+					{
+						"name" : "ObjectId",
+						"in": "path",
+						"description": "ID of object to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name" : "CharacteristicId",
+						"in": "path",
+						"description": "ID of characteristic to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/EstimationItem"
+							}
+						}
+					},
+					"404": {
+						"description": "estimation not found"
+					},
+					"400": {
+						"description": "id not found"
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"objects"
+				],
+				"summary": "evaluate an object according to a characteristic",
+				"parameters": [
+					{
+						"name" : "ObjectId",
+						"in": "path",
+						"description": "ID of object to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name" : "CharacteristicId",
+						"in": "path",
+						"description": "ID of characteristic to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "ok",
+						"schema": {
+							"$ref": "#/definitions/EstimationItem"
+						}
+					},
+					"404": {
+						"description": "estimation not found"
+					},
+					"400": {
+						"description": "id not found"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"objects"
+				],
+				"summary": "delete object characteristic",
+				"parameters": [
+					{
+						"name" : "ObjectId",
+						"in": "path",
+						"description": "ID of object to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name" : "CharacteristicId",
+						"in": "path",
+						"description": "ID of characteristic to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok"
+					},
+					"400": {
+						"description": "id not found"
+					},
+					"404": {
+						"description": "characteristic not found"
+					}
+				}
+			}
+		},
+		"/objects/:object_id/сharacteristics/:id/average": {
+			"get": {
+				"tags": [
+					"objects"
+				],
+				"summary": "average of all available object ratings",
+				"parameters": [
+					{
+						"name" : "ObjectId",
+						"in": "path",
+						"description": "ID of object to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					},
+					{
+						"name" : "CharacteristicId",
+						"in": "path",
+						"description": "ID of characteristic to return",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "integer"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"UserItem": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string"
+				},
+				"image": {
+					"type": "string"
+				}
+			}
+		},
+		"ObjectItem": {
+			"type": "object",
+			"properties": {
+				"owner": {
+					"$ref": "#/definitions/UserItem"
+				},
+				"name": {
+					"type": "string"
+				},
+				"image": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string"
+				}
+			}
+		},
+		"CharacteristicItem": {
+			"type": "object",
+			"properties": {
+				"owner": {
+					"$ref": "#/definitions/UserItem"
+				},
+				"name": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string"
+				}
+			}
+		},
+		"EstimationItem": {
+			"type": "object",
+			"properties": {
+				"object": {
+					"$ref": "#/definitions/ObjectItem"
+				},
+				"characteristic": {
+					"$ref": "#/definitions/CharacteristicItem"
+				},
+				"user": {
+					"$ref": "#/definitions/UserItem"
+				},
+				"value": {
+					"type": "number"
+				},
+				"status": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
