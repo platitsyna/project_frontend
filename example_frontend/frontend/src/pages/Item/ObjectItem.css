@@ -1,0 +1,33 @@
+.objectElem{
+    width: 250px;
+    border-collapse: collapse;
+    border: 0.3rem solid #02b4b4;
+    margin: 10px;
+    background: #c8f1f3;
+}
+
+img{
+    height: 50%;
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.objH4,.objText{
+    width: 250px;
+    display: flex;
+    justify-content: space-around;
+    font-weight: normal;
+}
+
+.objH4{
+    font-size: 1.25em;
+    margin: 0;
+    border-block-end: 0.3rem solid #02b4b4;
+}
+
+.objText{
+    font-size: 1em;
+    border-block-start: 0.3rem solid #02b4b4;
+    margin: 0;
+}

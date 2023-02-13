@@ -1,0 +1,35 @@
+h3{
+    font-size: 3em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+h2{
+    font-size: 1.5em;
+    font-weight: normal;
+    display: flex;
+
+}
+
+.page{
+    width: 1200px;
+    height: 500px;
+    background: aliceblue;
+}
+
+text{
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.65em;
+    font-weight: normal;
+}
+
+.listItems{
+    display: flex;
+}

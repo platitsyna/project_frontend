@@ -1,0 +1,15 @@
+button{
+    border: 0;
+    background-color: transparent;
+    padding: 0 0 0 600px;
+}
+
+.links{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+a{
+    background: antiquewhite;
+}
